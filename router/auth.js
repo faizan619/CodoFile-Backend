@@ -65,7 +65,7 @@ router.post('/rundart',async(req,res)=>{
         // const errorPattern =  / Error: ([^\n]+)/;
         const errorMessage = err.toString();
         const match = errorMessage.match(errorPattern);
-        const realError = match ? match[0].trim() : "Unknown error occurred";
+        const realError = match ? match[0].trim() : "Server Doesnt Support Dart. Check out at https://render.com/docs";
         
         res.status(500).json({ error: `Error: ${realError}` });
 
