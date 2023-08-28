@@ -77,16 +77,14 @@ router.post('/rundart',async(req,res)=>{
 router.post('/register',async (req,res)=>{ 
     const {username,email,password,cpassword,role} = req.body;
     if(!username || !email || !password || !cpassword && role ){
-        // return res.status(422).send({Error: "Enter Completed Details for Processing"});
-           return res.status(422)
+        return res.status(422).send({Error: "Enter Completed Details for Processing"});
     }
 
     try{
         const userExist = await User.findOne({email:email});
 
         if(userExist){
-            // return res.status(421).json({Error:"Email already exist"})
-            return res.status(421)
+            return res.status(421).json({Error:"Email already exist"})
         }
         else if(password!=cpassword){
             // return res.status(420).json({Error:"Password are not matching"})
@@ -95,8 +93,7 @@ router.post('/register',async (req,res)=>{
         else{
             const user = new User({username,email,password,cpassword,role});
             await user.save();
-            // res.status(200).json({success:"User Register Successfully"});
-            return res.status(200)
+            res.status(200).json({success:"User Register Successfully"});
         }
     }catch(err){
         console.log(`Admin There is an Error : ${err}`);
