@@ -38,7 +38,7 @@ router.post('/runpy',async(req,res)=>{
         const errorMessage = err.toString();
         const errorPattern =  /line \d+\s+([^\n]+)/;
         const match = errorMessage.match(errorPattern);
-        const realError = match ? match[0].trim() : "Unknown error occurred";
+        const realError = match ? match[0].trim() : "Check Code Syntax or Network Connvectivity";
         
         res.status(500).json({ error: `Error: ${realError}` });
 
